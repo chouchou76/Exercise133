@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<h1>FASHION COLLECTION</h1>
+
+<button [routerLink]="'/add-fashion'" class="btn btn-add">
+  <i class="fa fa-plus"></i> Add New Fashion
+</button>
+
+<br /><br />
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Style</th>
+    <th>Image</th>
+    <th>Action</th>
+  </tr>
+  <tbody>
+    <tr *ngFor="let fashion of fashions">
+      <td>{{ fashion._id }}</td>
+      <td>{{ fashion.fashion_subject }}</td>
+      <td>{{ fashion.style }}</td>
+      <td>
+        <img [src]="fashion.fashion_image" width="100px" height="100px" />
+      </td>
+      <td>
+        <button (click)="viewDetails(fashion._id)" class="btn-circle">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
+        
+        <button [routerLink]="['/edit', fashion._id]" class="btn-circle">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        
+        <button (click)="deleteFashion(fashion._id)" class="btn-circle">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+        
+      </td> 
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="errMessage" class="error-message">
+  {{ errMessage }}
+</div>
